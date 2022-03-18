@@ -1,0 +1,39 @@
+.userpage {
+    margin: 70px 250px;
+}
+
+.user-infos {
+    margin-bottom: 70px;
+}
+.user-infos h1{
+    margin-bottom: 35px;
+}
+
+.user-graphics{
+    display: flex;
+}
+
+
+/* Stats */ 
+
+.stats {
+    width: 250px;
+    height: 125px;
+    background-color: #FBFBFB;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+p.stats-value {
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+p.stats-name {
+    font-weight: 500;
+    font-size: 17px;
+}
+.stats-icon {
+    margin-right: 25px;
+}

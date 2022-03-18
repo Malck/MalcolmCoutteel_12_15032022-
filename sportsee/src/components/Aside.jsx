@@ -20,7 +20,7 @@ export default function Aside() {
             </div>
 
             <p>
-                Copiryght, SportSee 2000
+                Copiryght, SportSee 2020
             </p>
 
         </div>

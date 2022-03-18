@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Header from "../src/components/Header" ;
 import Aside from "../src/components/Aside" ;
 import Error from "./pages/Error"
+import User from './pages/User';
 
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
       <Routes>
 
         <Route exact path="/" element={<Home />}/>
+
+        
+        <Route path='/user' element={<User />} />
 
         <Route path="/*" element={<Error />}/>
           

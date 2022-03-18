@@ -1,0 +1,11 @@
+.homepage h1 {
+    position: absolute;
+    bottom: 50%;
+    left: 28%;
+}
+img.banner-image {
+    height: 900px;
+    width: 100%;
+    object-fit: cover;
+}
+
