@@ -8,4 +8,25 @@ img.banner-image {
     width: 100%;
     object-fit: cover;
 }
-
+.user12link{
+    position: absolute;
+    bottom: 35%;
+    left: 28%;
+    color: black;
+    font-size: 20px;
+}
+.user12link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.user18link{
+    position: absolute;
+    bottom: 35%;
+    left: 40%;
+    color: black;
+    font-size: 20px;
+}
+.user18link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
