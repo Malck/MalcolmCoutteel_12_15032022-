@@ -1,6 +1,6 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip } from "recharts";
 
-export default function WeightActivity() {
+export default function WeightChart() {
   const data = [
     {
       name: "1",
@@ -65,9 +65,9 @@ export default function WeightActivity() {
   ];
 
   return (
-    <div className="user-graphics">
+    
 
-      <BarChart width={500} height={300} data={data}
+      <BarChart width={840} height={320} data={data} barGap={10}
             margin={{
             top: 5,
             right: 30,
@@ -75,7 +75,7 @@ export default function WeightActivity() {
             bottom: 5,
             }}>
 
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false}/>
 
         <Legend
           layout="horizontal"
@@ -84,15 +84,21 @@ export default function WeightActivity() {
           wrapperStyle={{ paddingBottom: "20px" }}
         />
 
-        <XAxis dataKey="name" />
+        <XAxis dataKey="name" tickLine={false} />
 
-        <YAxis />
+        <YAxis orientation='right'/>
 
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Tooltip  wrapperStyle={{ backgroundColor: '#E60000', color: 'white', padding: "6px", display: 'flex', alignItems: 'center', justifyContent: 'center' }} />
+
+        <Bar barSize={10} dataKey="pv" fill="#282D30" name="Poids (kg)" radius={[10, 10, 0, 0]} />
+        <Bar barSize={10} dataKey="uv" fill="#E60000" name="Calories brûlées (kCal)" radius={[10, 10, 0, 0]} />
 
       </BarChart>
 
-    </div>
+    
   );
 }
+
+//Xaxis datakey="???????" correspond a 1 2  3  4 5  6 ...
+//Bar datakey="kilogram"
+//Bar datakey="calories"

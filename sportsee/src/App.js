@@ -15,12 +15,13 @@ function App() {
 
       <Header />
       <Aside />
+      
       <Routes>
 
         <Route exact path="/" element={<Home />}/>
 
         
-        <Route path='/user' element={<User />} />
+        <Route path='/user/:id' element={<User />} />
 
         <Route path="/*" element={<Error />}/>
           

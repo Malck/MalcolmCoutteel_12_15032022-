@@ -4,7 +4,6 @@ import React from "react";
     RadarChart,
     PolarGrid,
     PolarAngleAxis,
-    PolarRadiusAxis
   } from "recharts";
 
 export default function RadarActivity() {
@@ -49,24 +48,21 @@ export default function RadarActivity() {
   ];
   
     return (
-      <RadarChart
-        cx={300}
-        cy={250}
-        outerRadius={150}
-        width={500}
-        height={500}
-        data={data}
-      >
+
+      <RadarChart cy="50%" cx="50%"  width={260} height={260} data={data} outerRadius={70} >
+
         <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis />
-        <Radar
-          name="Mike"
-          dataKey="A"
-          stroke="#8884d8"
-          fill="#8884d8"
-          fillOpacity={0.6}
-        />
+
+        <PolarAngleAxis dataKey="subject" stroke="white" tickLine={false}/>
+
+        <Radar dataKey="A" stroke="#FF0101B2" fill="#FF0101B2" fillOpacity={0.8} />
+
       </RadarChart>
+
     );
-  }
+
+}
+// Radar datakey="value"
+
+
+
