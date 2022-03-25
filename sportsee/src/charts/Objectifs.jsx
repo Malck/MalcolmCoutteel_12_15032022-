@@ -7,13 +7,12 @@ import { getAverageSession } from "../tools/Tools";
 export default function ObjectifChart(props) {
 
   const [data, setData] = useState(null)
-  
+
 
     useEffect(() => {
 
         async function getSession() {
             const response = await getAverageSession(props.id)
-            console.log(response)
             setData(response)
         }
 
@@ -27,14 +26,35 @@ export default function ObjectifChart(props) {
       </div>
   )
 
-    
-//<LineChart width={260} height={260} data={data.data.sessions}> ça a marché , probleme de await reload ou autre ?
+  function CustomTooltip({ active, payload, label }) {
+        
+    if (active && payload[0].value !== null) {
+
+        return (
+            <div className="tooltip-objectifs">
+
+              <h4>{ payload[0].value } min</h4>
+
+            </div>
+        )
+    }
+
+    return null
+}
+
+
+/*function xAxisTickFormatter(key,toto) {
+  const domaineDate = ["L","M","M","J","V","S","D"];
+  return domaineDate[toto] 
+}*/
+
+
   return (
     <LineChart width={260} height={260} data={data.sessions}> 
       
-      <XAxis dataKey="day" label={{ color: "white" }} tick={{stroke:"lightgrey"}} tickLine={false}  domain={[ "L", "M", "M", "J", "V", "S", "D" ]} color="white" /> 
+      <XAxis dataKey="day" type={["L","M","M","J","V","S","D"]}  label={{ color: "white" }} tick={{stroke:"lightgrey"}} tickLine={false} /> 
      
-      <Tooltip />
+      <Tooltip name="DAY" content={<CustomTooltip />} />
 
       <defs>
         <linearGradient id="lineID" x1="0" y1="0" x2="1" y2="0">
@@ -51,5 +71,3 @@ export default function ObjectifChart(props) {
   );
 }
 
-//Xaxis datakey="day"  
-//Line datakey="sessionLength"

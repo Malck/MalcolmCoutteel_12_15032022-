@@ -1,68 +1,58 @@
 import React from "react";
-  import {
-    Radar,
-    RadarChart,
-    PolarGrid,
-    PolarAngleAxis,
-  } from "recharts";
+import {Radar, RadarChart, PolarGrid, PolarAngleAxis} from "recharts";
 
-export default function RadarActivity() {
+import { useState,useEffect } from "react";
+import { getPerf } from "../tools/Tools";
 
-  const data = [
-    {
-      subject: "Math",
-      A: 120,
-      B: 110,
-      fullMark: 150
-    },
-    {
-      subject: "Chinese",
-      A: 98,
-      B: 130,
-      fullMark: 150
-    },
-    {
-      subject: "English",
-      A: 86,
-      B: 130,
-      fullMark: 150
-    },
-    {
-      subject: "Geography",
-      A: 99,
-      B: 100,
-      fullMark: 150
-    },
-    {
-      subject: "Physics",
-      A: 85,
-      B: 90,
-      fullMark: 150
-    },
-    {
-      subject: "History",
-      A: 65,
-      B: 85,
-      fullMark: 150
+export default function RadarActivity({id}) {
+
+  const[data,setData] = useState()
+
+  useEffect(() => {
+    async function getRadar(){
+
+      const response = await getPerf(id)
+
+      const newData = []
+
+      if (!response) {
+        return "erreur"
+      }
+
+      response.data.map(x => {
+          newData.push(
+              {
+                  value: x.value,
+                  name: response.kind[x.kind]
+              }
+          )
+      })
+      setData(newData)
+      
+      console.log(newData)
+
     }
-  ];
+    getRadar();
+
+  },[])
+
   
     return (
 
-      <RadarChart cy="50%" cx="50%"  width={260} height={260} data={data} outerRadius={70} >
+      <RadarChart cy="50%" cx="50%"  width={260} height={260} data={data} outerRadius={70}  >
 
         <PolarGrid />
 
-        <PolarAngleAxis dataKey="subject" stroke="white" tickLine={false}/>
+        <PolarAngleAxis dataKey="name" stroke="white" tickLine={false} y="120"/>
 
-        <Radar dataKey="A" stroke="#FF0101B2" fill="#FF0101B2" fillOpacity={0.8} />
+        <Radar dataKey="value" stroke="#FF0101B2" fill="#FF0101B2" fillOpacity={0.8} />
 
       </RadarChart>
 
     );
 
 }
-// Radar datakey="value"
+
 
 
 

@@ -1,139 +1,69 @@
+import { useState,useEffect } from "react";
+import { Cell, Pie, PieChart, Sector } from "recharts";
+import { findID } from "../tools/Tools";
 
-import React from "react";
-import { PieChart, Pie, Sector, Cell } from "recharts";
+export default function Score(props){
 
-const renderActiveShape = (props) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
+  const[user, setUser] = useState()
 
-  return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-    
-      </text>
-      <text x={cx} y={cy+25} dy={8} textAnchor="middle" fill={fill}>
-        
-        {payload.value}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-    </g>
-  );
-};
+  useEffect(() => {
+    async function getScore(){
+      const response = await findID(props.id)
+      const data = []
 
-const data = [
-  { name: "Group A", value: 30 },
-  { name: "Group A", value: 70 },
-];
-const COLORS = ["#0088FE", "#FBFBFB"];
-
-export default function App() {
-  return (
-    <PieChart width={260} height={260}>
-      <Pie
-        data={data}
-        activeIndex={0}
-        activeShape={renderActiveShape}
-        cx="50%"
-        cy="50%"
-        startAngle={-270}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-    </PieChart>
-  );
-}
+            data.push(
+                {
+                    value: (response.todayScore && response.todayScore) * 100 || (response.score && response.score) * 100,
+                    hidden: false
+                },
+                {
+                    value: 100 - ((response.todayScore && response.todayScore * 100) || (response.score && response.score) * 100),
+                    hidden: true
+                }
+            )
+            setUser(data)
+    }
+    getScore();
 
 
+  },[])
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
-
-export default function Score(){
-
-  const data = [
-    { name: "Group A", value: 20 },
-    { name: "Group A", value: 80 },
-  ];
-  const COLORS = ["#0088FE", "black"];
-
-    return (
-      <PieChart width={260} height={260}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          startAngle={-270}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#FFF"
-          dataKey="value"
-        >
-          
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
+  const renderActiveShape = (props) => {
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload } = props;
   
-      </PieChart>
+    return (
+      <g>
+        <text x={cx} y={cy-15} dy={8} textAnchor="middle" fill="black" fontWeight={700} fontSize={24}>
+          {payload.value + "%"}
+        </text>
+
+        <text x={cx} y={cy+15} dy={8} textAnchor="middle" fill="grey" fontSize={16}>
+          {"de votre objectif"}
+        </text>
+
+        <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} startAngle={startAngle} endAngle={endAngle} fill={fill}
+        />
+      </g>
     );
+  };
 
-}*/
+  const COLORS = ["#FF0101B2", "#FBFBFB"];
+    
+    return (
 
+      <PieChart width={260} height={260}>
 
+        <Pie data={user} dataKey="value" cx="50%" cy="50%" outerRadius={70} fill="#FFFFFF"/>
 
+        <Pie data={user} activeIndex={0}activeShape={renderActiveShape} cx="50%" cy="50%" startAngle={-270} innerRadius={70} outerRadius={80} fill="white" dataKey="value" >
 
+          {
+            user && user.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} display={(user.hidden === true) ? "none" : ""} />)
+          }
 
+        </Pie>
 
+      </PieChart>
 
-
-
-
-/* Pie
-return(
-  <PieChart width={260} height={260}>
-<Pie
-  data={data01}
-  dataKey="value"
-  cx="50%"
-  cy="50%"
-  outerRadius={80}
-  fill="#FFFFFF"
-/>
-<Pie
-  data={data02}
-  dataKey="value"
-  cx="50%"
-  cy="50%"
-  innerRadius={80}
-  outerRadius={90}
-  fill="#E60000"
-  label
-/>
-</PieChart>
-) */
+    );
+} 

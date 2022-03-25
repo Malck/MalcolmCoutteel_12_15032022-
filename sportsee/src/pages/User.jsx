@@ -1,4 +1,3 @@
-//import { useEffect, useState } from "react"
 import "../styles/user.css";
 import calories from "../assets/calories.svg";
 import proteines from "../assets/proteines.svg";
@@ -17,8 +16,7 @@ import { findID } from "../tools/Tools";
 export default function User() {
 
   const {id} = useParams()
-  console.log(id)
-
+  
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -32,7 +30,9 @@ export default function User() {
 
 
   return (
+
     <div className="userpage">
+
       <div className="user-infos">
 
         {user &&
@@ -41,6 +41,7 @@ export default function User() {
         </h1>
         }
         <h2>Félicitation! Vous avez explosé vos objectifs hier 👏 </h2>
+
       </div>
 
       <div className="user-graphics">
@@ -50,19 +51,21 @@ export default function User() {
         <div className="user-charts">
 
           <div className="user-weight">
-            <WeightChart />
+            <WeightChart id={user.id}/>
           </div>
 
           <div className="user-objectif">
+            <h3>Durée moyenne des sessions</h3>
             <ObjectifChart id={user.id}/>
           </div>
 
           <div className="user-radar">
-            <RadarActivity />
+            <RadarActivity id={user.id}/>
           </div>
 
           <div className="user-score">
-            <ScoreChart />
+            <h3>Score</h3>
+            <ScoreChart id={user.id}/>
           </div>
           
           <div className="user-symbols">
@@ -76,12 +79,9 @@ export default function User() {
 
         }
 
-
-          
-
-
       </div>
 
     </div>
   );
+  
 }
