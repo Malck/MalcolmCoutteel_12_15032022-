@@ -2,7 +2,11 @@ import Axios from "axios"
 
 const mockee = false
 
-//Function for user.jsx to get the id and data // works with the 4e chart : Score
+/**
+ * Function for User.jsx to get the id and data
+ * Chart n*4 = Score
+ * @param {string} id - The id of user.
+ */
 async function findID(id) {
 
     let userData = {}
@@ -20,8 +24,13 @@ async function findID(id) {
     return userData
 }
 
-//Chart n*1 = WeightChart
+/**
+ * Chart n*1 = WeightChart
+ * @param {string} id - The id of user.
+ */
 async function getActivity(id) {
+
+
 
     let userData = {}
     
@@ -40,7 +49,10 @@ async function getActivity(id) {
     return userData
 }
 
-//Chart n*2 = Objectifs
+/**
+ * Chart n*2 = Objectifs
+ * @param {string} id - The id of user.
+ */
 async function getAverageSession(id) {
 
     let userData = {}
@@ -60,7 +72,10 @@ async function getAverageSession(id) {
     return userData
 }
 
-//Chart n*3 = Radar
+/**
+ * Chart n*3 = Radar
+ * @param {string} id - The id of user.
+ */
 async function getPerf(id) {
 
     let userData = {}
