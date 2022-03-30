@@ -3,10 +3,11 @@ import {Radar, RadarChart, PolarGrid, PolarAngleAxis} from "recharts";
 
 import { useState,useEffect } from "react";
 import { getPerf } from "../tools/Tools";
+import PropTypes from 'prop-types' ;
 
 export default function RadarActivity({id}) {
 
-  const[data,setData] = useState()
+  const[data,setData] = useState([{name:'', value:0}])
 
   useEffect(() => {
     async function getRadar(){
@@ -19,19 +20,19 @@ export default function RadarActivity({id}) {
         return "erreur"
       }
 
-      response.data.map(x => {
+      response.data.forEach(x => {
           newData.push(
               {
-                  value: x.value,
-                  name: response.kind[x.kind]
+                name: response.kind[x.kind],
+                value: x.value
               }
           )
       })
+
       setData(newData)
-      
-      console.log(newData)
 
     }
+    
     getRadar();
 
   },[])
@@ -53,6 +54,8 @@ export default function RadarActivity({id}) {
 
 }
 
-
+RadarActivity.propTypes = {
+  id : PropTypes.number.isRequired,
+}
 
 

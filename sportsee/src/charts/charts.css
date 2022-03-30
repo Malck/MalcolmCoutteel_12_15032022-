@@ -36,9 +36,6 @@
     font-size: 16px;
 }
 
-
-
-
 /* 2eme chart = Objectif per day */
 .user-objectif {
     width: 260px;
@@ -98,7 +95,7 @@
     color: #20253A;
 }
 
-/*4eme chart = scorePie */
+/*4eme chart = ScorePie */
 .user-score {
     background-color: #FBFBFB;
     width: 260px;

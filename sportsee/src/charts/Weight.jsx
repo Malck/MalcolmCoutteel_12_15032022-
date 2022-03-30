@@ -2,7 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip, Label } from "recharts";
 import { getActivity } from "../tools/Tools";
-
+import PropTypes from 'prop-types' ;
 
 export default function WeightChart(props) {
 
@@ -12,7 +12,6 @@ export default function WeightChart(props) {
 
         async function getSession() {
             const response = await getActivity(props.id)
-            //console.log(response.sessions)
             setData(response.sessions)
         }
 
@@ -25,7 +24,7 @@ export default function WeightChart(props) {
           <h1>ERREUR</h1>
       </div>
   )
-  
+ 
   function CustomTooltip({ active, payload}) {
         
     if (active && payload[0].value !== null && payload[1].value !== null) {
@@ -79,5 +78,11 @@ export default function WeightChart(props) {
   );
 
 }
+
+WeightChart.propTypes = {
+  id : PropTypes.number.isRequired,
+}
+
+
 
 

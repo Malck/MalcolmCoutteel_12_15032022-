@@ -3,22 +3,35 @@ import "../charts/charts.css"
 import { useState,useEffect } from "react";
 import {LineChart,Line,XAxis,Tooltip,Legend} from "recharts";
 import { getAverageSession } from "../tools/Tools";
+import PropTypes from 'prop-types' ;
 
 export default function ObjectifChart(props) {
 
   const [data, setData] = useState(null)
 
+  useEffect(() => {
 
-    useEffect(() => {
+    async function getSession() {
+        const response = await getAverageSession(props.id)
+        const newData = []
+        
+        const daysArray = ['0','L', 'M', 'M', 'J', 'V', 'S', 'D']
 
-        async function getSession() {
-            const response = await getAverageSession(props.id)
-            setData(response)
-        }
+        response.sessions.forEach(x => {
+          newData.push(
+              {
+                day: daysArray[x.day],
+                sessionLength: x.sessionLength
+              }
+          )
+      })
+      setData(newData)
+        
+    }
 
-        getSession()
+    getSession();
 
-    }, []) 
+  }, []) 
 
     if (!data) return (
       <div>
@@ -42,17 +55,10 @@ export default function ObjectifChart(props) {
     return null
 }
 
-
-/*function xAxisTickFormatter(key,toto) {
-  const domaineDate = ["L","M","M","J","V","S","D"];
-  return domaineDate[toto] 
-}*/
-
-
   return (
-    <LineChart width={260} height={260} data={data.sessions}> 
+    <LineChart width={260} height={260} data={data}> 
       
-      <XAxis dataKey="day" type={["L","M","M","J","V","S","D"]}  label={{ color: "white" }} tick={{stroke:"lightgrey"}} tickLine={false} /> 
+      <XAxis dataKey="day" label={{ color: "white" }} tick={{stroke:"lightgrey"}} tickLine={false} /> 
      
       <Tooltip name="DAY" content={<CustomTooltip />} />
 
@@ -69,5 +75,9 @@ export default function ObjectifChart(props) {
       
     </LineChart>
   );
+}
+
+ObjectifChart.propTypes = {
+  id : PropTypes.number.isRequired,
 }
 

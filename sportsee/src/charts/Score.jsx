@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import { Cell, Pie, PieChart, Sector } from "recharts";
 import { findID } from "../tools/Tools";
+import PropTypes from 'prop-types' ;
 
 export default function Score(props){
 
@@ -41,8 +42,7 @@ export default function Score(props){
           {"de votre objectif"}
         </text>
 
-        <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} startAngle={startAngle} endAngle={endAngle} fill={fill}
-        />
+        <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} startAngle={startAngle} endAngle={endAngle} fill={fill} />
       </g>
     );
   };
@@ -55,7 +55,7 @@ export default function Score(props){
 
         <Pie data={user} dataKey="value" cx="50%" cy="50%" outerRadius={70} fill="#FFFFFF"/>
 
-        <Pie data={user} activeIndex={0}activeShape={renderActiveShape} cx="50%" cy="50%" startAngle={-270} innerRadius={70} outerRadius={80} fill="white" dataKey="value" >
+        <Pie data={user} dataKey="value" activeIndex={0} activeShape={renderActiveShape} cx="50%" cy="50%" startAngle={-270} innerRadius={70} outerRadius={80} fill="white"  >
 
           {
             user && user.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} display={(user.hidden === true) ? "none" : ""} />)
@@ -67,3 +67,7 @@ export default function Score(props){
 
     );
 } 
+
+Score.propTypes = {
+  id : PropTypes.number.isRequired,
+}
