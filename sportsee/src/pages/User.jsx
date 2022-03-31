@@ -12,6 +12,7 @@ import Stats from "../components/Stats";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { findID } from "../tools/Tools";
+import PropTypes from 'prop-types' ;
 
 export default function User() {
 
@@ -21,8 +22,8 @@ export default function User() {
 
   useEffect(() => {
     async function getUser() {
-        const response = await findID(id)
-        setUser(response)
+      const response = await findID(id)
+      setUser(response)
     }
     getUser()
     
@@ -84,4 +85,8 @@ export default function User() {
     </div>
   );
   
+}
+
+User.propTypes = {
+  id : PropTypes.number.isRequired,
 }
