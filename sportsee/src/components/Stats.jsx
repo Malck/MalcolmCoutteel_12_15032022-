@@ -1,3 +1,12 @@
+import PropTypes from 'prop-types' ;
+/**
+ * Genere un composant de statistiques
+ * @param {*} props 
+ * @param {string} props.img
+ * @param {string} props.value 
+ * @param {string} props.name
+ * @returns {*} 
+ */
 export default function Stats(props) {
 
     return (
@@ -13,3 +22,8 @@ export default function Stats(props) {
     )
 
 }
+
+Stats.propTypes = {
+    value : PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }

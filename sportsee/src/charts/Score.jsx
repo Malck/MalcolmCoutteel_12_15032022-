@@ -3,6 +3,12 @@ import { Cell, Pie, PieChart, Sector } from "recharts";
 import { findID } from "../tools/Tools";
 import PropTypes from 'prop-types' ;
 
+/**
+ * Genere le graphique du Score 
+ * @param {Object} props 
+ * @param {Number} props.id 
+ * @returns {Element} 
+ */
 export default function Score(props){
 
   const[user, setUser] = useState()

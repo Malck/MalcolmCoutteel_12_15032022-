@@ -1,21 +1,27 @@
 import React from "react";
 import { useState,useEffect } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip, Label } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip } from "recharts";
 import { getActivity } from "../tools/Tools";
 import PropTypes from 'prop-types' ;
 
+/**
+ * Genere le graphique d'activité quotidienne
+ * @param {Object} props 
+ * @param {Number} props.id 
+ * @returns {Element}
+ */
 export default function WeightChart(props) {
 
   const [data, setData] = useState()
 
     useEffect(() => {
 
-        async function getSession() {
-            const response = await getActivity(props.id)
-            setData(response.sessions)
-        }
+      async function getSession() {
+       const response = await getActivity(props.id)
+       setData(response.sessions)
+      }
 
-        getSession()
+      getSession()
 
     }, []) 
 
@@ -67,7 +73,7 @@ export default function WeightChart(props) {
   
       <XAxis tickLine={false} > </XAxis>  
 
-      <YAxis orientation='right' wrapperStyle={{ width: "220px" }} /> 
+      <YAxis orientation='right' wrapperStyle={{ width: "220px" }} dataKey="kilogram" domain={[30, 90]}/> 
 
       <Tooltip  content={<CustomTooltip />} />
 

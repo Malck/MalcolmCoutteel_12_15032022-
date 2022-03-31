@@ -5,6 +5,11 @@ import { useState,useEffect } from "react";
 import { getPerf } from "../tools/Tools";
 import PropTypes from 'prop-types' ;
 
+/**
+ * Genere le graphique Radar des performances
+ * @param {Number} id
+ * @returns {Element}
+ */
 export default function RadarActivity({id}) {
 
   const[data,setData] = useState([{name:'', value:0}])

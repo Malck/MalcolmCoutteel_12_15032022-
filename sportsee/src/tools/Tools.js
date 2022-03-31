@@ -1,98 +1,82 @@
 import Axios from "axios"
 
+/**
+ * Utilisation ou non des données mockés
+ * @var {boolean} 
+ */
 const mockee = false
+const serverMock = "http://localhost:3001/Mock/"
+const server = "http://localhost:3000/user/"
 
 /**
  * Function for User.jsx to get the id and data
- * Chart n*4 = Score
- * @param {string} id - The id of user.
+ * La function est utilisé dans le Chart n*4 = Score
+ * @param {number} id - The id of user.
+ * @returns {Promise.<Object>}
  */
 async function findID(id) {
 
-    let userData = {}
-    
-    if (mockee === true) {
-        const response = await fetch(`http://localhost:3001/Mock/${id}.json`) //call at 3001 when we start back first , then front 
+    if (mockee) {
+        const response = await fetch(`${serverMock+id}.json`) //call at 3001 when we start back first , then front 
         const data = await response.json()
-        userData = data
-
-    } else {
-        const response = await Axios.get('http://localhost:3000/user/'+id) // host:3000 call on Backend first 
-        userData = response.data.data
-    }
-
-    return userData
+        return data
+    } 
+    const response = await Axios.get(server+id) // host:3000 call on Backend first 
+    return response.data.data
 }
 
 /**
- * Chart n*1 = WeightChart
- * @param {string} id - The id of user.
+ * La function est utilisé dans le Chart n*1 = WeightChart
+ * @param {number} id - The id of user.
+ * @returns {Promise.<Object>}
  */
 async function getActivity(id) {
 
-
-
-    let userData = {}
-    
-    if (mockee === true) {
+    if (mockee) {
         
         const response = await fetch(`http://localhost:3001/Mock/${id}/activity.json`)
         const data = await response.json()
         console.log("tools weightdata",data)
-        userData = data
+        return data
+    } 
 
-    } else {
-        const response = await Axios.get('http://localhost:3000/user/'+id+'/activity') 
-        userData = response.data.data
-    }
-
-    return userData
+    const response = await Axios.get('http://localhost:3000/user/'+id+'/activity') 
+    return response.data.data   
 }
 
 /**
- * Chart n*2 = Objectifs
- * @param {string} id - The id of user.
+ * La function est utilisé dans le Chart n*2 = Objectifs
+ * @param {number} id - The id of user.
+ * @returns {Promise.<Object>}
  */
 async function getAverageSession(id) {
 
-    let userData = {}
-    
-    if (mockee === true) {
+    if (mockee ) {
         
         const response = await fetch(`http://localhost:3001/Mock/${id}/average-sessions.json`)
         const data = await response.json()
-        userData = data
-
-    } else {
-        
-        const response = await Axios.get('http://localhost:3000/user/'+id+'/average-sessions')  
-        userData = response.data.data
-    }
-
-    return userData
+        return data
+    }   
+    const response = await Axios.get('http://localhost:3000/user/'+id+'/average-sessions')  
+    return response.data.data
 }
 
 /**
- * Chart n*3 = Radar
- * @param {string} id - The id of user.
+ * La function est utilisé dans le Chart n*3 = Radar
+ * @param {number} id - The id of user.
+ * @returns {Promise.<Object>}
  */
 async function getPerf(id) {
-
-    let userData = {}
     
-    if (mockee === true) {
+    if (mockee) {
         
         const response = await fetch(`http://localhost:3001/Mock/${id}/performance.json`)
         const data = await response.json()
-        userData = data 
+        return  data 
 
-    } else {
-        
-        const response = await Axios.get(`http://localhost:3000/user/${id}/performance`)  
-        userData = response.data.data
-    }
-    
-    return userData
+    }     
+    const response = await Axios.get(`http://localhost:3000/user/${id}/performance`)  
+    return response.data.data
 }
 
 

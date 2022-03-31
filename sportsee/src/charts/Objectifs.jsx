@@ -5,6 +5,12 @@ import {LineChart,Line,XAxis,Tooltip,Legend} from "recharts";
 import { getAverageSession } from "../tools/Tools";
 import PropTypes from 'prop-types' ;
 
+/**
+ * Genere le graphique de la durée des sessions 
+ * @param {Object} props 
+ * @param {Number} props.id 
+ * @returns {Element}
+ */
 export default function ObjectifChart(props) {
 
   const [data, setData] = useState(null)
