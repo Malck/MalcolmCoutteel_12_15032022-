@@ -38,37 +38,37 @@ const USER_ACTIVITY = [
             {
                 day: '2020-07-01',
                 kilogram: 80,
-                calories: 240
+                calories: 40
             },
             {
                 day: '2020-07-02',
                 kilogram: 80,
-                calories: 220
+                calories: 70
             },
             {
                 day: '2020-07-03',
                 kilogram: 81,
-                calories: 280
+                calories: 80
             },
             {
                 day: '2020-07-04',
                 kilogram: 81,
-                calories: 290
+                calories: 90
             },
             {
                 day: '2020-07-05',
                 kilogram: 80,
-                calories: 160
+                calories: 60
             },
             {
                 day: '2020-07-06',
                 kilogram: 78,
-                calories: 162
+                calories: 62
             },
             {
                 day: '2020-07-07',
                 kilogram: 76,
-                calories: 390
+                calories: 90
             }
         ]
     },
@@ -78,37 +78,37 @@ const USER_ACTIVITY = [
             {
                 day: '2020-07-01',
                 kilogram: 70,
-                calories: 240
+                calories: 40
             },
             {
                 day: '2020-07-02',
                 kilogram: 69,
-                calories: 220
+                calories: 50
             },
             {
                 day: '2020-07-03',
                 kilogram: 70,
-                calories: 280
+                calories: 80
             },
             {
                 day: '2020-07-04',
                 kilogram: 70,
-                calories: 500
+                calories: 50
             },
             {
                 day: '2020-07-05',
                 kilogram: 69,
-                calories: 160
+                calories: 60
             },
             {
                 day: '2020-07-06',
                 kilogram: 69,
-                calories: 162
+                calories: 62
             },
             {
                 day: '2020-07-07',
                 kilogram: 69,
-                calories: 390
+                calories: 90
             }
         ]
     }
@@ -189,12 +189,12 @@ const USER_PERFORMANCE = [
     {
         userId: 12,
         kind: {
-            1: 'cardio',
-            2: 'energy',
-            3: 'strength',
-            4: 'endurance',
-            5: 'speed',
-            6: 'intensity'
+            1: 'Intensité',
+            2: 'Vitesse',
+            3: 'Force',
+            4: 'Endurance',
+            5: 'Energie',
+            6: 'Cardio'
         },
         data: [
             {
@@ -226,12 +226,12 @@ const USER_PERFORMANCE = [
     {
         userId: 18,
         kind: {
-            1: 'cardio',
-            2: 'energy',
-            3: 'strength',
-            4: 'endurance',
-            5: 'speed',
-            6: 'intensity'
+            1: 'Intensité',
+            2: 'Vitesse',
+            3: 'Force',
+            4: 'Endurance',
+            5: 'Energie',
+            6: 'Cardio'
         },
         data: [
             {
