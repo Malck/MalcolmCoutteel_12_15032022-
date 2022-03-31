@@ -7,7 +7,7 @@ Develop an analytics Dashboard with React
 
 - React
 
-- Node
+- Node : v16.13.2
 
 - React-router-dom :
  ```$ npm install react-router-dom```
