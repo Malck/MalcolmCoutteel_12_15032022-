@@ -88,5 +88,5 @@ export default function User() {
 }
 
 User.propTypes = {
-  id : PropTypes.number.isRequired,
+  id : PropTypes.number
 }
