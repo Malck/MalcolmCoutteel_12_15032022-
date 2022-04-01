@@ -73,12 +73,14 @@ export default function WeightChart(props) {
   
       <XAxis tickLine={false} > </XAxis>  
 
-      <YAxis orientation='right' wrapperStyle={{ width: "220px" }} dataKey="kilogram" domain={[30, 90]}/> 
+      
+      <YAxis orientation='right' yAxisId="right" wrapperStyle={{ width: "220px" }} dataKey="kilogram" domain={['dataMin - 10', 'dataMax + 5']} axisLine={false}/> 
+      <YAxis orientation='left' yAxisId="left" wrapperStyle={{ width: "220px" }}  domain={[0, "dataMax + 10 "]} hide="true"/> 
 
       <Tooltip  content={<CustomTooltip />} />
 
-      <Bar barSize={10} dataKey="kilogram" fill="#282D30" name="Poids (kg)" radius={[10, 10, 0, 0]} />
-      <Bar barSize={10} dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" radius={[10, 10, 0, 0]} />
+      <Bar barSize={10} yAxisId="right" dataKey="kilogram" fill="#282D30" name="Poids (kg)" radius={[10, 10, 0, 0]} />
+      <Bar barSize={10} yAxisId="left" dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" radius={[10, 10, 0, 0]} />
 
     </BarChart>
   );
