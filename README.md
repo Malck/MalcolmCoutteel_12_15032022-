@@ -1,5 +1,4 @@
-# MalcolmCoutteel_12_15032022-
-Projet 12 : SportSee
+## Openclassrooms Project 12
 
 Develop an analytics Dashboard with React
 
